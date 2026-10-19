@@ -1,0 +1,1127 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>FreshHelm Express | Helm Bersih, Perjalanan Nyaman</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --dark: #101827;
+      --dark2: #192438;
+      --teal: #39d6c3;
+      --teal-dark: #119b8e;
+      --orange: #ffad5a;
+      --white: #ffffff;
+      --bg: #f5f8fb;
+      --muted: #66758a;
+      --radius: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(16, 24, 39, .96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      color: white;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: Manrope, sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--dark);
+      background: var(--teal);
+      font-size: 1.3rem;
+    }
+
+    .logo small {
+      display: block;
+      color: #9aa9bd;
+      font-family: "DM Sans", sans-serif;
+      font-size: .65rem;
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      list-style: none;
+      font-size: .9rem;
+      color: #d4dce8;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid #364254;
+      background: transparent;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: #09221f;
+      background: var(--teal);
+      box-shadow: 0 8px 25px rgba(57,214,195,.2);
+    }
+
+    .btn-primary:hover {
+      background: #72ebdd;
+    }
+
+    .btn-outline {
+      color: white;
+      background: transparent;
+      border: 1px solid #526073;
+    }
+
+    /* HERO */
+    .hero {
+      color: white;
+      background:
+        radial-gradient(circle at 80% 40%, rgba(57,214,195,.13), transparent 30%),
+        radial-gradient(circle at 10% 0%, rgba(255,173,90,.09), transparent 30%),
+        var(--dark);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+      align-items: center;
+      padding-top: 85px;
+      padding-bottom: 90px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 30px;
+      border: 1px solid rgba(57,214,195,.3);
+      background: rgba(57,214,195,.08);
+      color: #9bf3e8;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    h1, h2, h3 {
+      font-family: Manrope, sans-serif;
+      line-height: 1.2;
+      letter-spacing: -1px;
+    }
+
+    h1 {
+      margin: 24px 0 20px;
+      font-size: clamp(2.6rem, 5vw, 4.5rem);
+    }
+
+    h1 span {
+      color: var(--teal);
+    }
+
+    .hero p {
+      max-width: 540px;
+      color: #b7c4d5;
+      font-size: 1.05rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 32px;
+      color: #c1ccda;
+      font-size: .85rem;
+    }
+
+    .hero-points i {
+      color: var(--orange);
+      margin-right: 6px;
+    }
+
+    .hero-visual {
+      position: relative;
+      padding: 10px;
+    }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 1 / 1.02;
+      border-radius: 30px;
+      border: 1px solid #394759;
+      box-shadow: 0 30px 80px rgba(0,0,0,.3);
+      transform: rotate(1deg);
+      background: var(--dark2);
+    }
+
+    .hero-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .85;
+    }
+
+    .image-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px;
+      color: white;
+      background: linear-gradient(transparent, rgba(10,18,30,.95));
+    }
+
+    .image-caption small {
+      color: var(--teal);
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .image-caption h3 {
+      margin-top: 8px;
+      font-size: 1.6rem;
+    }
+
+    .floating-card {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 17px;
+      border-radius: 15px;
+      background: white;
+      color: var(--dark);
+      box-shadow: 0 15px 40px rgba(0,0,0,.25);
+    }
+
+    .floating-card.top {
+      top: 35px;
+      left: -15px;
+    }
+
+    .floating-card.bottom {
+      bottom: 25px;
+      right: -12px;
+    }
+
+    .floating-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: var(--teal-dark);
+      background: #e0faf6;
+      font-size: 1.15rem;
+    }
+
+    .floating-card strong {
+      display: block;
+      font-size: .9rem;
+    }
+
+    .floating-card small {
+      display: block;
+      color: var(--muted);
+      font-size: .75rem;
+    }
+
+    /* QUICK BENEFITS */
+    .quick-benefits {
+      background: white;
+      border-bottom: 1px solid #e8edf3;
+    }
+
+    .benefits-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 25px 0;
+    }
+
+    .benefit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 13px;
+      padding: 8px 15px;
+      border-right: 1px solid #e5eaf0;
+    }
+
+    .benefit:last-child {
+      border: 0;
+    }
+
+    .benefit i {
+      font-size: 1.5rem;
+      color: var(--teal-dark);
+    }
+
+    .benefit strong {
+      display: block;
+      font-family: Manrope, sans-serif;
+      font-size: .95rem;
+    }
+
+    .benefit small {
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
+    /* GENERAL SECTIONS */
+    .section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-label {
+      display: block;
+      color: var(--teal-dark);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      padding: 29px;
+      background: white;
+      border: 1px solid #e8edf3;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(15,23,42,.035);
+      transition: .25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(15,23,42,.1);
+    }
+
+    .service-icon {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 21px;
+      border-radius: 16px;
+      color: var(--teal-dark);
+      background: #e0faf6;
+      font-size: 1.4rem;
+    }
+
+    .service-card:nth-child(2) .service-icon {
+      color: #b76816;
+      background: #fff0df;
+    }
+
+    .service-card:nth-child(3) .service-icon {
+      color: #375cc5;
+      background: #e8efff;
+    }
+
+    .service-card h3 {
+      margin-bottom: 11px;
+      font-size: 1.15rem;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    /* PRICE CALCULATOR */
+    .price-section {
+      background: #eaf1f5;
+    }
+
+    .price-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .price-info h2 {
+      margin: 15px 0 18px;
+      font-size: clamp(2rem, 3.4vw, 3rem);
+    }
+
+    .price-info p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .price-note {
+      display: flex;
+      gap: 10px;
+      color: #566579;
+      font-size: .88rem;
+    }
+
+    .price-note i {
+      color: var(--teal-dark);
+      margin-top: 5px;
+    }
+
+    .calculator {
+      padding: 32px;
+      border: 1px solid #e2e9f0;
+      border-radius: 24px;
+      background: white;
+      box-shadow: 0 20px 55px rgba(15,23,42,.1);
+    }
+
+    .calculator-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .calculator-heading h3 {
+      font-size: 1.35rem;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 30px;
+      color: var(--teal-dark);
+      background: #e0faf6;
+      font-size: .7rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .field {
+      margin-bottom: 19px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-size: .88rem;
+    }
+
+    .field select,
+    .field input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #d7e0e8;
+      border-radius: 11px;
+      background: #fbfcfd;
+      color: var(--dark);
+      outline: none;
+    }
+
+    .field select:focus,
+    .field input:focus {
+      border-color: var(--teal-dark);
+      box-shadow: 0 0 0 3px rgba(17,155,142,.12);
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .total-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      margin: 24px 0 18px;
+      color: white;
+      background: var(--dark);
+      border-radius: 15px;
+    }
+
+    .total-box span {
+      display: block;
+      color: #b7c4d5;
+      font-size: .85rem;
+    }
+
+    .total-box strong {
+      display: block;
+      color: var(--teal);
+      font-family: Manrope, sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: -1px;
+    }
+
+    .total-box i {
+      color: var(--teal);
+      font-size: 1.7rem;
+    }
+
+    .calculator .btn {
+      width: 100%;
+    }
+
+    .calculator-note {
+      margin-top: 12px;
+      color: #7c8999;
+      font-size: .75rem;
+      text-align: center;
+    }
+
+    /* HOW TO ORDER */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .step {
+      padding: 23px;
+      border-left: 3px solid #b6eee7;
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 17px;
+      border-radius: 13px;
+      color: var(--teal);
+      background: var(--dark);
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    /* CTA */
+    .cta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      padding: 45px;
+      color: white;
+      background: linear-gradient(115deg, var(--dark), #1b3544);
+      border-radius: 26px;
+    }
+
+    .cta h2 {
+      margin-bottom: 12px;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+    }
+
+    .cta p {
+      color: #b7c4d5;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 80px;
+      padding: 43px 0 23px;
+      color: white;
+      background: #080e19;
+    }
+
+    .footer-main {
+      display: flex;
+      justify-content: space-between;
+      gap: 35px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #283244;
+    }
+
+    .footer-about {
+      max-width: 400px;
+    }
+
+    .footer-about p {
+      margin-top: 15px;
+      color: #9eacbf;
+      font-size: .9rem;
+    }
+
+    .footer-contact h3 {
+      margin-bottom: 13px;
+      font-size: 1rem;
+    }
+
+    .footer-contact a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+      color: #c6d0de;
+    }
+
+    .footer-contact i {
+      width: 20px;
+      color: var(--teal);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding-top: 20px;
+      color: #8492a6;
+      font-size: .8rem;
+    }
+
+    .wa-float {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 90;
+      display: grid;
+      place-items: center;
+      width: 57px;
+      height: 57px;
+      border-radius: 50%;
+      color: white;
+      background: #25d366;
+      box-shadow: 0 10px 28px rgba(37,211,102,.3);
+      font-size: 1.8rem;
+      transition: .2s;
+    }
+
+    .wa-float:hover {
+      transform: translateY(-4px);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav-links { gap: 15px; font-size: .82rem; }
+      .navbar > .btn { padding: 11px 13px; font-size: .82rem; }
+      .hero-grid { gap: 30px; }
+      .price-grid { gap: 30px; }
+      .services-grid { gap: 15px; }
+      .service-card { padding: 23px; }
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(100% - 30px, 560px); }
+      .navbar { min-height: 70px; flex-wrap: wrap; }
+      .menu-toggle { display: block; margin-left: auto; }
+      .navbar > .btn { display: none; }
+      .nav-links {
+        display: none;
+        order: 3;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-bottom: 12px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        display: block;
+        padding: 12px 4px;
+        border-top: 1px solid #283244;
+      }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding-top: 55px;
+        padding-bottom: 60px;
+        gap: 38px;
+      }
+      h1 { font-size: clamp(2.5rem, 11vw, 3.6rem); }
+      .hero-visual { min-height: 330px; }
+      .hero-image { width: 92%; margin: auto; aspect-ratio: 1.1; }
+      .floating-card.top { left: 0; top: 15px; }
+      .floating-card.bottom { right: 0; bottom: 8px; }
+      .benefits-row { grid-template-columns: 1fr; padding: 8px 0; }
+      .benefit {
+        justify-content: flex-start;
+        padding: 15px 5px;
+        border-right: 0;
+        border-bottom: 1px solid #e5eaf0;
+      }
+      .benefit:last-child { border-bottom: 0; }
+      .section { padding: 65px 0; }
+      .section-heading { margin-bottom: 30px; }
+      .services-grid,
+      .price-grid,
+      .steps-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 25px; }
+      .calculator { padding: 23px 19px; }
+      .field-row { grid-template-columns: 1fr; gap: 0; }
+      .cta { align-items: flex-start; flex-direction: column; padding: 30px 23px; }
+      .footer-main,
+      .footer-bottom { flex-direction: column; }
+      footer { margin-top: 60px; }
+      .wa-float { right: 15px; bottom: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar container" aria-label="Navigasi utama">
+      <a class="logo" href="#home">
+        <span class="logo-icon"><i class="fa-solid fa-helmet-safety"></i></span>
+        <span>FreshHelm <small>EXPRESS · HELM CARE</small></span>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#layanan">Keunggulan</a></li>
+        <li><a href="#harga">Daftar Harga</a></li>
+        <li><a href="#cara-pesan">Cara Pesan</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+
+      <a class="btn btn-primary" href="https://wa.me/6285755277460?text=Halo%20FreshHelm%20Express%2C%20saya%20ingin%20bertanya%20tentang%20layanan%20cuci%20helm." target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> Pesan Sekarang
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">HELM CARE, MADE SIMPLE</span>
+          <h1>Helm bersih.<br><span>Perjalanan lebih nyaman.</span></h1>
+          <p>
+            Helm menemani perjalananmu setiap hari. Rawat kebersihannya
+            dengan layanan cuci helm yang praktis, harga transparan, dan
+            pemesanan mudah melalui WhatsApp.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#harga">
+              <i class="fa-solid fa-calculator"></i> Cek Harga
+            </a>
+            <a class="btn btn-outline" href="https://wa.me/6285755277460?text=Halo%20FreshHelm%20Express%2C%20saya%20ingin%20memesan%20cuci%20helm." target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> Hubungi Kami
+            </a>
+          </div>
+
+          <div class="hero-points">
+            <span><i class="fa-solid fa-circle-check"></i> Harga transparan</span>
+            <span><i class="fa-solid fa-circle-check"></i> Pemesanan mudah</span>
+            <span><i class="fa-solid fa-circle-check"></i> Praktis dan nyaman</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1100&q=85" alt="Helm dan perlengkapan berkendara">
+            <div class="image-caption">
+              <small>FRESHHELM EXPRESS</small>
+              <h3>Mulai perjalanan dari helm yang bersih.</h3>
+            </div>
+          </div>
+
+          <div class="floating-card top">
+            <span class="floating-icon"><i class="fa-solid fa-shield-heart"></i></span>
+            <span><strong>Perawatan rutin</strong><small>Lebih nyaman dipakai</small></span>
+          </div>
+
+          <div class="floating-card bottom">
+            <span class="floating-icon"><i class="fa-solid fa-tags"></i></span>
+            <span><strong>Mulai Rp15.000</strong><small>Pilih sesuai jenis helm</small></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-benefits">
+      <div class="container benefits-row">
+        <div class="benefit">
+          <i class="fa-solid fa-soap"></i>
+          <div><strong>Helm lebih terawat</strong><small>Rawat bagian dalam dan luar</small></div>
+        </div>
+        <div class="benefit">
+          <i class="fa-solid fa-tags"></i>
+          <div><strong>Harga jelas</strong><small>Estimasi sebelum memesan</small></div>
+        </div>
+        <div class="benefit">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div><strong>Pesan praktis</strong><small>Langsung melalui WhatsApp</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="layanan">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Kenapa FreshHelm?</span>
+          <h2>Perawatan helm yang simpel dan nyaman</h2>
+          <p>Kami membantu pengendara menjaga kebersihan helm tanpa proses pemesanan yang merepotkan.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3>Lebih Bersih dan Segar</h3>
+            <p>Perawatan helm membantu mengurangi kotoran dan bau tidak sedap akibat pemakaian sehari-hari.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            <h3>Proses Praktis</h3>
+            <p>Tanyakan jadwal dan perkiraan waktu pengerjaan melalui WhatsApp sebelum membawa helm.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <h3>Biaya Transparan</h3>
+            <p>Hitung estimasi berdasarkan jenis helm, jumlah helm, dan pilihan antar-jemput.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section price-section" id="harga">
+      <div class="container price-grid">
+        <div class="price-info">
+          <span class="section-label">Estimasi harga</span>
+          <h2>Sesuaikan layanan dengan kebutuhanmu.</h2>
+          <p>Pilih jenis helm dan jumlahnya untuk menghitung estimasi biaya. Biaya antar-jemput akan ditambahkan jika dipilih.</p>
+          <div class="price-note">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Biaya antar-jemput adalah estimasi untuk area sekitar. Konfirmasikan jangkauan layanan dan total akhir melalui WhatsApp.</span>
+          </div>
+        </div>
+
+        <div class="calculator">
+          <div class="calculator-heading">
+            <h3>Kalkulator biaya</h3>
+            <span class="tag"><i class="fa-solid fa-bolt"></i> HITUNG OTOMATIS</span>
+          </div>
+
+          <div class="field">
+            <label for="helmType">Jenis helm</label>
+            <select id="helmType">
+              <option value="15000" data-name="Half Face">Half Face — Rp15.000</option>
+              <option value="20000" data-name="Full Face">Full Face — Rp20.000</option>
+              <option value="25000" data-name="Premium / Cross">Premium / Cross — Rp25.000</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="helmQty">Jumlah helm</label>
+              <input type="number" id="helmQty" value="1" min="1" max="50" inputmode="numeric">
+            </div>
+
+            <div class="field">
+              <label for="delivery">Antar-jemput</label>
+              <select id="delivery">
+                <option value="0" data-name="Ambil/antar sendiri">Ambil/antar sendiri — Gratis</option>
+                <option value="5000" data-name="Antar-jemput area sekitar">Area sekitar — +Rp5.000</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="total-box" aria-live="polite">
+            <div>
+              <span>Estimasi total biaya</span>
+              <strong id="totalDisplay">Rp15.000</strong>
+            </div>
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+
+          <button class="btn btn-primary" id="orderButton" type="button">
+            <i class="fa-brands fa-whatsapp"></i> Pesan via WhatsApp
+          </button>
+
+          <p class="calculator-note">Harga akhir dan jadwal dikonfirmasi melalui WhatsApp.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cara-pesan">
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-label">Cara pemesanan</span>
+          <h2>Tiga langkah, langsung terhubung</h2>
+          <p>Mulai dari memilih layanan hingga mengonfirmasi pesanan dengan mudah.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3>Pilih layanan</h3>
+            <p>Tentukan jenis helm, jumlah helm, dan pilihan antar-jemput pada kalkulator.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3>Kirim pesanan</h3>
+            <p>Tekan tombol WhatsApp untuk mengirim detail pilihanmu secara otomatis.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3>Konfirmasi jadwal</h3>
+            <p>Diskusikan lokasi, jadwal pengerjaan, dan total biaya dengan FreshHelm Express.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="cta">
+        <div>
+          <h2>Helmmu sudah waktunya dibersihkan?</h2>
+          <p>Hubungi FreshHelm Express dan tanyakan layanan yang sesuai kebutuhanmu.</p>
+        </div>
+        <a class="btn btn-primary" href="https://wa.me/6285755277460?text=Halo%20FreshHelm%20Express%2C%20saya%20ingin%20bertanya%20tentang%20layanan%20cuci%20helm." target="_blank" rel="noopener">
+          <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontak">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-about">
+          <a class="logo" href="#home">
+            <span class="logo-icon"><i class="fa-solid fa-helmet-safety"></i></span>
+            <span>FreshHelm <small>EXPRESS · HELM CARE</small></span>
+          </a>
+          <p>Layanan cuci helm yang mengutamakan kemudahan pemesanan, estimasi harga yang jelas, dan kenyamanan berkendara.</p>
+        </div>
+
+        <div class="footer-contact">
+          <h3>Hubungi kami</h3>
+          <a href="https://wa.me/6285755277460" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> 0857-5527-7460
+          </a>
+          <a href="#harga"><i class="fa-solid fa-calculator"></i> Hitung estimasi biaya</a>
+          <a href="#home"><i class="fa-solid fa-arrow-up"></i> Kembali ke atas</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> FreshHelm Express.</span>
+        <span>Helm bersih, perjalanan lebih nyaman.</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/6285755277460?text=Halo%20FreshHelm%20Express%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="Chat melalui WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <script>
+    const helmType = document.getElementById("helmType");
+    const helmQty = document.getElementById("helmQty");
+    const delivery = document.getElementById("delivery");
+    const totalDisplay = document.getElementById("totalDisplay");
+
+    function formatRupiah(number) {
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        maximumFractionDigits: 0
+      }).format(number).replace(/\u00a0/g, " ");
+    }
+
+    function getOrderDetails() {
+      const quantity = Math.max(1, Math.min(50, parseInt(helmQty.value, 10) || 1));
+      helmQty.value = quantity;
+
+      const price = Number(helmType.value);
+      const deliveryCost = Number(delivery.value);
+      const total = price * quantity + deliveryCost;
+
+      return {
+        quantity,
+        total,
+        helmName: helmType.options[helmType.selectedIndex].dataset.name,
+        deliveryName: delivery.options[delivery.selectedIndex].dataset.name
+      };
+    }
+
+    function calculateTotal() {
+      const order = getOrderDetails();
+      totalDisplay.textContent = formatRupiah(order.total);
+    }
+
+    [helmType, helmQty, delivery].forEach((element) => {
+      element.addEventListener("input", calculateTotal);
+      element.addEventListener("change", calculateTotal);
+    });
+
+    document.getElementById("orderButton").addEventListener("click", () => {
+      const order = getOrderDetails();
+      calculateTotal();
+
+      const message = [
+        "Halo FreshHelm Express, saya ingin memesan layanan cuci helm.",
+        "",
+        `Jenis helm: ${order.helmName}`,
+        `Jumlah: ${order.quantity} helm`,
+        `Layanan: ${order.deliveryName}`,
+        `Estimasi total: ${formatRupiah(order.total)}`,
+        "",
+        "Mohon konfirmasi ketersediaan jadwal, lokasi, dan total biaya. Terima kasih."
+      ].join("\n");
+
+      const whatsappURL = "https://wa.me/6285755277460?text=" +
+        encodeURIComponent(message);
+
+      window.open(whatsappURL, "_blank", "noopener,noreferrer");
+    });
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    calculateTotal();
+  </script>
+</body>
+</html>
